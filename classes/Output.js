@@ -1,3 +1,6 @@
+// The **Class Output** contains the required fields as given in assignment problem statement.
+// The ```underscore``` before the names of field are signifying that the fields may remain un-used throughout the code.
+
 class Output{
     _coins;
     _pubKeyLen;

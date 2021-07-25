@@ -1,3 +1,18 @@
+// There were some corrections in the README file also as some files were wrongly named.
+// This is a long but very fundamental code where we are just taking inputs.
+// The big idea is to create classes of object which is a good way to organize data as
+// most of the crypto libraries uses the classes of object and also OOPs is quite a forgotten concept :)
+
+// One more loop hole in the assignment was about the binary data.
+// We have to just care about putting data in a .bin or .dat file as these are binary file extensions rest we have APIs for conversion.
+
+// A problem is found in the code that it creates a new file with the name being the hash of the transaction created.
+// Correct it so that the things stored in the **sample.dat** file with proper content.
+
+// Required libraries to be included.
+// ```nano-time``` is the new important library used for time-stamp till nano second precision.
+// Also look at the way the classes are included according to their paths.
+// Being a module which is exported it could be used as libraries for the code.
 const fs = require('fs');
 const crypto = require('crypto');
 const readline = require('readline');
@@ -6,25 +21,37 @@ const Transaction = require("../classes/Transaction");
 const Output = require("../classes/Output");
 const Input = require("../classes/Input");
 
+// Creates a object of class Interface for use from readline library.
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
-})
+});
 
 function main()
 {
+    // New class objects created by inbuilt contructor using new() method.
     let input = new Input;
     let output = new Output;
     let txn = new Transaction;
 
     let ins = 0, outs = 0;
     let i = 0, j = 0;
-    console.log("Enter the number of Inputs")
+    console.log("Enter the number of Inputs");
+
+    // Notice that even the Readline library contains an API named as prompt().
+    // It will take the input in the next line in a systematic manner.
     rl.prompt();
+
+    // Look for the various APIs present in the library Readline.
+    // This is similar to the close() API of Readline in opposite sense.
+    // Compare this API a bit with question API.
+    // Till close() is not encountered it is thought of as a infinite loop.
     rl.on('line', (line) => {
-        if(ins === 0)
+        
+        // First input is dealt with here.
+        if(ins === 0)                            // '===' is the identity operator
         {
-            ins = parseInt(line);
+            ins = parseInt(line);                // Converts a string into integer which is called parsing
             txn.numInputs = ins;
             console.log(txn.numInputs);
             if(ins > 0)
@@ -34,13 +61,14 @@ function main()
             }
             else
             {
-                rl.close();
+                rl.close();                       // End when no input specified.
                 return;
             }
         }
 
         else if(i < 3*ins)
         {
+            // Handles the 1st input in sets of 3 till a certain limit.
             if(i%3 === 0)
             {
                 if(line.length != 64)
@@ -82,6 +110,7 @@ function main()
             i++;
         }
 
+        // Controls the first output.
         else if(outs === 0)
         {
             outs = parseInt(line);
@@ -93,7 +122,7 @@ function main()
             }
             else
             {
-                rl.close();
+                rl.close();              // Case of no output.
                 return;
             }
         }
@@ -140,13 +169,18 @@ function main()
             }
             j++;
         }
+
         rl.prompt();
     })
     
 }
 
-
+// As JS is a scripting language it does not have any kind of main() function.
+// But mentor has made a main() kind of framework in the code for programming accordingly.
 main();
+
+// Required functions to be used time-to-time in main.
+
 
 function writeToFile(txn)
 {

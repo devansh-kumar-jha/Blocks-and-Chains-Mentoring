@@ -1,3 +1,11 @@
+// This is a extremely useful programming style of creating reusable code in the repository.
+// The mentor has made a seperate file and is exporting the code.
+// **module.export** new command to learn -> used to export the things in this file.
+// Refer to **sidebar.js** in RustDuino Library.
+
+// The **Class Input** contains the required fields as given in assignment problem statement.
+// The ```underscore``` before the names of field are signifying that the fields may remain un-used throughout the code.
+
 class Input{
     _txnID;
     _index;
