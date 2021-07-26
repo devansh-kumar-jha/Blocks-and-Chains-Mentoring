@@ -1,3 +1,9 @@
+// The major issue to be dealt with in this assignment is related to the conversion of read data
+// from the binary file to the data which is required to be
+// presented in front of the user.
+// This is a relatively easier assignment though which does not require much of a
+// effort if the last assignment is done carefully.
+
 const fs = require('fs');
 const readline = require('readline');
 const crypto = require('crypto');
@@ -90,6 +96,17 @@ rl.question("Enter the relative path to the binary file to be read: ", name => {
     rl.close();
 })
 
+
+// The most important thing in this assignment is this code for reading the file.
+// Look carefully the way we are type-casting things around and reading accordingly from the string
+// which is read very carefully from the data.
+
+// The mechanism of storing data into a binary file might help to convert things 
+// Assignment 3 work might help a lot.
+// A similar kind of thing is needed to be done in the Assignment 5 as well.
+
+// See carefully that the binary file gives us only the bits but we have to
+// manage the data carefully out of it.
 function readInt(str, start, end)
 {
     let size = end - start;
